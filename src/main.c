@@ -72,6 +72,10 @@ void DrawCastCredit(Font font, const char *title, Color tint, cJSON *json)
     for (int i = 0; i < list.count; i++)
     {
         DrawCreditText(font, cJSON_GetStringValue(list.values[i]), (Vector2){40, 120+50*i}, TITLE_TEXT_SIZE, 1, tint);
+        for (int px = 40 + MeasureTextEx(font, cJSON_GetStringValue(list.values[i]), TITLE_TEXT_SIZE, 1).x; px < GetScreenWidth()-40-MeasureTextEx(font, list.keys[i], 30, 1).x; px += MeasureTextEx(font, ". ", 40, 1).x)
+        {
+            DrawCreditText(font, ". ", (Vector2){px, 120+50*i}, 40, 1, TEXT_COLOR);
+        }
         DrawCreditText(font, list.keys[i], (Vector2){GetScreenWidth()-40-MeasureTextEx(font, list.keys[i], 30, 1).x, 125+50*i}, 30, 1, tint);
     }
 
@@ -85,6 +89,25 @@ void DrawCreditMulti(Font font, const char *title, cJSON *names, int y_val, Colo
     for (int i = 0; i < cJSON_GetArraySize(names); i++)
     {
         DrawCreditName(font, cJSON_GetStringValue(cJSON_GetArrayItem(names, i)), y_val+NAME_TEXT_SIZE*i, tint);
+    }
+}
+
+#define MULTI_HORIZ_X_PADDING 20
+void DrawCreditMultiHoriz(Font font, const char *title, cJSON *names, int y_val, Color tint)
+{
+    DrawCreditTitle(font, title, y_val, tint);
+    int totalSize = 0;
+    for (int i = 0; i < cJSON_GetArraySize(names); i++)
+    {
+        totalSize += MeasureTextEx(font, cJSON_GetStringValue(cJSON_GetArrayItem(names, i)), NAME_TEXT_SIZE, 1).x;
+        totalSize += MULTI_HORIZ_X_PADDING;
+    }
+    int sizeOffset = 0;
+    for (int i = 0; i < cJSON_GetArraySize(names); i++)
+    {
+        DrawCreditText(font, cJSON_GetStringValue(cJSON_GetArrayItem(names, i)), (Vector2){GetScreenWidth()/2 - totalSize / 2 + sizeOffset, y_val + TITLE_TEXT_SIZE}, NAME_TEXT_SIZE, 1, tint);
+        sizeOffset += MeasureTextEx(font, cJSON_GetStringValue(cJSON_GetArrayItem(names, i)), NAME_TEXT_SIZE, 1).x;
+        sizeOffset += MULTI_HORIZ_X_PADDING;
     }
 }
 
@@ -167,6 +190,10 @@ int main(int argc, char **argv)
                 } break;
                 case cJSON_Object:
                 {
+                    if (cJSON_HasObjectItem(list.values[j], "horiz"))
+                    {
+                        creditYSize += TITLE_TEXT_SIZE + NAME_TEXT_SIZE;
+                    }
                 } break;
                 case cJSON_Array:
                 {
@@ -193,7 +220,19 @@ int main(int argc, char **argv)
                 } break;
                 case cJSON_Object:
                 {
-                    DrawCastCredit(font, list.keys[j], TEXT_COLOR, list.values[j]);
+                    if (cJSON_HasObjectItem(list.values[j], "horiz"))
+                    {
+                        DrawCreditMultiHoriz(font, list.keys[j], cJSON_GetObjectItem(list.values[j], "data"), creditOffset, TEXT_COLOR);
+                        creditOffset += TITLE_TEXT_SIZE + NAME_TEXT_SIZE;
+                    }
+                    else if (TextIsEqual(list.keys[j], "CAST"))
+                    {
+                        DrawCastCredit(font, list.keys[j], TEXT_COLOR, list.values[j]);
+                    }
+                    else
+                    {
+                        printf("Can't handle frame %d item %d.\n", i, j);
+                    }
                 } break;
                 case cJSON_Array:
                 {
