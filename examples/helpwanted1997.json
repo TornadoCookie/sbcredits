@@ -1,0 +1,98 @@
+[
+    {
+        "meta": "Source Video ID https://www.youtube.com/watch?v=NoPpEBR-Coc",
+        "endcard":"hw1997",
+        "widescreen":false
+    },
+    {"EXECUTIVE PRODUCER": "Stephen Hillenburg"},
+    {"BACKGROUND COLOR STYLIST": "Nick Jennings"},
+    {"ANIMATION DIRECTOR": "Alan Smart"},
+    {"SENIOR PRODUCER": "Michael Lessa"},
+    {"PRODUCER": "Larry Le Francis"},
+    {
+        "CAST": {
+            "SPONGEBOB": "Tom Kenny",
+            "SQUIDWARD": "Roger Bumpass",
+            "MR. KRABS": "Clancy Brown",
+            "PATRICK STAR": "Bill Fabberbakke",
+            "NARRATOR, SUB DRIVER": "Tom Kenny"
+        }
+    },
+    {"CASTING DIRECTOR": "Donna Grillo"},
+    {"STORYBOARD ARTISTS": ["Stephen Hillenburg", "Derek Drymon"]},
+    {
+        "ORIGINAL CHARACTER DESIGNER": "Stephen Hillenburg",
+        "CHARACTER AND PROP CLEAN-UP": "Erik Weise",
+        "CHARACTER LAYOUT": ["Mark O'Hare", "Erik Weise"]
+    },
+    {
+        "BG LAYOUT DESIGNERS": ["Stephen Hillenburg", "Nick Jennings"],
+        "BACKGROUND LAYOUT": "Kenny Pittenger",
+        "BACKGROUND PAINTER": "Nick Jennings"
+    },
+    {"COLOR KEY SUPERVISORS": ["Christina Long", "Teale Réon Wang"]},
+    {
+        "ANIMATION TIMER": "Tom Yasumi",
+        "KEY ANIMATOR": "Eric Weise"
+    },
+    {"PRODUCTION COORDINATOR": "Tony Garcia"},
+    {"ANIMATIC COORDINATOR": "Tony Ostyn"},
+    {
+        "PRODUCERS ASSISTANTS": ["Dina Buteyn, Mergan Brown"],
+        "CASTING COORDINATOR": "Dawn Hershey"
+    },
+    {
+        "POST PRODUCTION SUPERVISOR": "Heather Adams",
+        "POST PRODUCTION ASSISTANT": "Shawn Trask"
+    },
+    {
+        "PICTURE EDITORS": ["Brad Carow", "Christopher Hink"],
+        "ASSISTANT EDITORS": ["Mark Merthe", "Matt Corey"]
+    },
+    {
+        "SOUND SUPERVSIOR and MIXER": "Timothy J. Borquez",
+        "SUPERVISING SOUND FX EDITOR": "Tom Syslo",
+        "DIALOGUE EDITOR": "Les Wolf",
+        "MUSIC EDITOR": "William B. Griggs, M.P.S.E"
+    },
+    {
+        "RE-RECORDING MIXERS": ["Timothy J. Borquez", "Timothy J. Garrity"],
+        "FOLEY MIXER": "Brad Brock",
+        "FOLEY ARTIST": "Diane Greco",
+        "SOUND SERVICES PROVIDED BY": "Hora Editorial, inc."
+    },
+    {
+        "ON LINE EDITORS": {"horiz":true, "data":["Kib Gibson","Barry Cohen"]},
+        "DA VINCI COLORIST": "Dexter P.",
+        "POST PRODUCTION SERVICES": ["Hollywood Digital", "Encore Video", "Anderson Video"]
+    },
+    {"OVERSEAS ANIMATION SUPERVISOR": "Mark Petlock"},
+    {"ANIMATION SERVICES": ["Rough Draft Studios,", "Korea"]},
+    {"OVERSEAS PRODUCERS": ["Nikki Vanzo", "Kyung Ja Park"]},
+    {"LAYOUT and ANIMATION DIRECTION": "Joong Ho Kim"},
+    {
+        "PRODUCTION MANAGER": "Il Suk Kim",
+        "PRODUCTION COORDINATORS": {"horiz":true, "data":["June Kim","Yong Nam Park"]},
+        "_": {
+            "columns": [
+                {
+                    "ANIMATION": "Young Sik Kim",
+                    "HEAD OF INKING": "Yun Kyung Choi",
+                    "HEAD OF BG PAINTING": "Eun Kyung Sung"
+                },
+                {
+                    "HEAD OF ASSISTANT ANIMATION": "Kae Sook Kim",
+                    "HEAD OF PAINTING": "Kyung Hee Song",
+                    "HEAD OF CAMERA": "Chul Kyu Lim"
+                }
+            ]
+        }
+    },
+    {"\"SPONGEBOB\" THEME\nWRITTEN BY": "Steven Belfer"},
+    {"\"SPONGEBOB\"\nMAIN TITLE ACTION THEME\nWRITTEN and ARRANGED BY": "Brad Carow"},
+    {"\"Living in the Sunshine,\nLoving in the Moonlight\"\n\nWRITTEN and PERFORMED BY": {"data":"Tiny Tim","subtitle":"(Courtesy Reprise Records.)"}},
+    {"PRODUCTION EXECUTIVE": "Andy Rheingold"},
+    {
+        "SPECTIAL THANKS TO": ["Mary Harrington", "Robert Scull", "Eric Coleman", "Peter Strauss", "Googe", "Carlos Palazio", "Glacier Sound Design", "David Frapwell", "Karen Umland"]
+    }
+]

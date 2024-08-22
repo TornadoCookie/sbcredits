@@ -1,0 +1,8 @@
+DefaultPlatform linux64-debug
+UseRaylib
+
+Dependency cJSON
+
+Program sbcredits
+Source main.c
+Source ../lib/cJSON/src/cJSON.c
