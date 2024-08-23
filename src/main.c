@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <raymath.h>
+#include <string.h>
 
 #define PROGRAM_VERSION "v0.0.0"
 
@@ -31,8 +32,8 @@ KeyValueList getKeyValueList(cJSON *json)
     return list;
 }
 
-#define NAME_TEXT_SIZE 60
-#define TITLE_TEXT_SIZE 40
+static int NAME_TEXT_SIZE = 60;
+static int TITLE_TEXT_SIZE = 40;
 
 void DrawOutlinedTextEx(Font font, const char *text, Vector2 pos, float fontSize, float spacing, Color tint, int outlineSize, Color outlineColor) {
     DrawTextEx(font, text, (Vector2){pos.x - outlineSize, pos.y - outlineSize}, fontSize, spacing, outlineColor);
@@ -145,7 +146,7 @@ int main(int argc, char **argv)
     Font font = LoadFont("assets/font.otf");
     SetTextureFilter(font.texture, TEXTURE_FILTER_BILINEAR);
     Texture2D background = LoadTexture("assets/sd.png");
-    Texture2D createdbysteve = LoadTexture("assets/createdbysteve.png");
+    Texture2D createdbysteve = LoadTexture(TextFormat("assets/%s", cJSON_GetStringValue(cJSON_GetObjectItem(settings, "endcard"))));
 
     int i = 1;
     int iFrame = 0;
@@ -164,6 +165,8 @@ int main(int argc, char **argv)
             if (i == cJSON_GetArraySize(json)) break;
             iFrame = 0;
             currentFrame = NULL;
+            NAME_TEXT_SIZE = 60;
+            TITLE_TEXT_SIZE = 40;
         }
         if (currentFrame == NULL)
         {
@@ -174,6 +177,7 @@ int main(int argc, char **argv)
 
         // Draw
         BeginDrawing();
+    tryagain:
         DrawTexture(background, 0, 0, WHITE);
 
         KeyValueList list = getKeyValueList(currentFrame);
@@ -207,6 +211,13 @@ int main(int argc, char **argv)
             creditYSize += CREDIT_Y_PADDING;
         }
 
+        if (creditYSize > GetScreenHeight())
+        {
+            NAME_TEXT_SIZE -= 10;
+            TITLE_TEXT_SIZE = NAME_TEXT_SIZE;
+            goto tryagain;
+        }
+
 
         int creditOffset = GetScreenHeight() / 2 - creditYSize / 2;
         for (int j = 0; j < list.count; j++)
@@ -225,7 +236,7 @@ int main(int argc, char **argv)
                         DrawCreditMultiHoriz(font, list.keys[j], cJSON_GetObjectItem(list.values[j], "data"), creditOffset, TEXT_COLOR);
                         creditOffset += TITLE_TEXT_SIZE + NAME_TEXT_SIZE;
                     }
-                    else if (TextIsEqual(list.keys[j], "CAST"))
+                    else if (!strncmp(list.keys[j], "CAST", 4))
                     {
                         DrawCastCredit(font, list.keys[j], TEXT_COLOR, list.values[j]);
                     }
