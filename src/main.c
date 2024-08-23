@@ -117,13 +117,34 @@ void DrawCreditMultiHoriz(Font font, const char *title, cJSON *names, int y_val,
 int main(int argc, char **argv)
 {
     printf("Spongebob Credits Generator (sbcredits) " PROGRAM_VERSION "\n");
+
+    const char *filename = argv[1];
+    InitWindow(640, 480, "SBCredits " PROGRAM_VERSION);
+    Font font = LoadFont("assets/font.otf");
+    SetTargetFPS(60);
+
+    SetTextLineSpacing(NAME_TEXT_SIZE);
+
     if (argc != 2)
     {
-        printf("Required argument <*.json> not there..\n");
-        return 1;
+        while (!WindowShouldClose())
+        {
+            if (IsFileDropped())
+            {
+                FilePathList list = LoadDroppedFiles();
+                filename = list.paths[0];
+                break;
+            }
+
+            BeginDrawing();
+            ClearBackground(RAYWHITE);
+
+            DrawCreditName(font, "Drag and Drop a .json file\ncontaining credit data\nto start (examples/)", 50, TEXT_COLOR);
+            EndDrawing();
+        }
     }
 
-    const char *jsonText = LoadFileText(argv[1]);
+    const char *jsonText = LoadFileText(filename);
     cJSON *json = cJSON_Parse(jsonText);
 
     cJSON *settings = cJSON_GetArrayItem(json, 0);
@@ -138,12 +159,9 @@ int main(int argc, char **argv)
         return 1;
     }
 
-    InitWindow(640, 480, "SBCredits " PROGRAM_VERSION);
-    SetTargetFPS(60);
     InitAudioDevice();
 
     Music music = LoadMusicStream("assets/music.mp3");
-    Font font = LoadFont("assets/font.otf");
     SetTextureFilter(font.texture, TEXTURE_FILTER_BILINEAR);
     Texture2D background = LoadTexture("assets/sd.png");
     Texture2D createdbysteve = LoadTexture(TextFormat("assets/%s", cJSON_GetStringValue(cJSON_GetObjectItem(settings, "endcard"))));
