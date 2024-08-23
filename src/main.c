@@ -5,7 +5,7 @@
 #include <raymath.h>
 #include <string.h>
 
-#define PROGRAM_VERSION "v0.0.0"
+#define PROGRAM_VERSION "v1.0.0"
 
 #define TEXT_COLOR (Color){221, 84, 112, 255}
 
